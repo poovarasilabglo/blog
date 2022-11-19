@@ -12,14 +12,14 @@ class TimeStampedModel(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, related_name="categories", on_delete=models.CASCADE)
     
 
 
 class Post(TimeStampedModel):
     title = models.CharField(max_length=100)
     content = models.TextField()
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, related_name="posts", on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     class Meta:
@@ -29,8 +29,8 @@ class Post(TimeStampedModel):
 
 
 class Comment(TimeStampedModel):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)
     content = models.TextField(blank=False)
 
     class Meta:
