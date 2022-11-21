@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'api_app',
 
 ]
@@ -83,7 +84,10 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'password',
         'HOST': 'localhost',
-        'PORT': '3306', 
+        'PORT': '3306',
+        'OPTIONS' :{'charset':'utf8mb4'},
+
+
     }
 }
 
@@ -136,6 +140,7 @@ REST_FRAMEWORK = {
         
     ),
       'DEFAULT_AUTHENTICATION_CLASSES': [
+           'rest_framework.authentication.TokenAuthentication',
            'rest_framework.authentication.BasicAuthentication',
            'rest_framework.authentication.SessionAuthentication',
 
