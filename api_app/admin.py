@@ -1,5 +1,5 @@
 from django.contrib import admin
-from api_app.models import *
+from api_app.models import  Post,Comment,Category
 
 
 class Postadmin(admin.ModelAdmin):
